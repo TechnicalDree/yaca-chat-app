@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Adrian Muñoz (adrianmu)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="18351 class project" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src="../friends.ts" type="module" defer=""></script>
+    <title>YACA Friend List</title>
+    <style>
+      h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 600px;
+        gap: 2rem;
+      }
+
+      .friends-nav {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+      }
+
+      #friendList {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px black;
+        border: 0.25rem solid lightgray;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-height: 200px;
+      }
+
+      .friend-item {
+        background-color: white;
+        padding: 1.2rem;
+        border-radius: 10px;
+        border: 0.2rem solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.2s ease;
+      }
+
+      .friend-item:hover {
+        transform: scale(1.05);
+        background-color: lightgray;
+        border-color: rgb(68, 61, 61);
+        box-shadow: 0 4px 15px black;
+      }
+
+      .friend-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .friend-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: black;
+      }
+
+      .friend-email {
+        color: gray;
+        font-size: 0.8rem;
+      }
+
+      #newFriendForm {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        border: 0.25rem solid lightgray;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .form-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      #newFriendForm input[type="text"], #newFriendForm input[type="email"] {
+        padding: 1rem;
+        font-size: 1rem;
+        border: 0.2rem solid lightgray;
+        border-radius: 10px;
+        background-color: white;
+        transition: all 0.2s ease;
+        flex: 1;
+      }
+
+      #newFriendForm input[type="text"]:focus, #newFriendForm input[type="email"]:focus {
+        outline: none;
+        border-color: gray;
+        background-color: lightgray;
+        box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
+        transform: scale(1.02);
+      }
+
+      .friendBtn-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      #addFriendBtn {
+        color: gray;
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        border: 0.25rem solid gray;
+        border-radius: 15px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-width: 150px;
+        flex-shrink: 0;
+      }
+
+      #addFriendBtn:hover {
+        background-color: lightgray;
+        color: black;
+        border-color: rgb(68, 61, 61);
+        transform: scale(1.05);
+      }
+
+      .remove-friend-btn {
+        background-color: #656263;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .remove-friend-btn:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+      }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Friends List</h2>
+        <div class="friends-nav">
+            <!-- <li>An input element with id="homeBtn"</li> -->
+            <a class="nav-link" id="homeBtn" href="index.html">Home</a>
+        </div>
+
+        <!-- <li>A div element with id="friendList" to contain all added friends</li> -->
+        <div id="friendList">
+            <div class="friend-item">
+                <div class="friend-info">
+                    <div class="friend-name">Parker Guss</div>
+                    <div class="friend-email">parker.guss@gmail.com</div>
+                </div>
+                <button class="remove-friend-btn">Remove</button>
+            </div>
+            
+            <div class="friend-item">
+                <div class="friend-info">
+                    <div class="friend-name">Lily Wang</div>
+                    <div class="friend-email">lily.wang@gmail.com</div>
+                </div>
+                <button class="remove-friend-btn">Remove</button>
+            </div>
+            
+            <div class="friend-item">
+                <div class="friend-info">
+                    <div class="friend-name">Enrique Gomez</div>
+                    <div class="friend-email">exg@andrew.cmu.edu</div>
+                </div>
+                <button class="remove-friend-btn">Remove</button>
+            </div>
+        </div>
+
+         <!-- <li>A form element with id="newFriendForm" to contain all the inputs needed for a new friend</li> -->
+        <form id="newFriendForm">
+            <div class="form-inputs">
+                <input type="text" name="friendName" placeholder="Enter friend's name" required />
+                <input type="email" name="friendEmail" placeholder="Enter friend's email" required />
+            </div>
+            <div class="friendBtn-container">
+                <!-- <li>An input element with type="submit" and id="addFriendBtn" inside the form element to submit the form</li> -->
+                <input type="submit" id="addFriendBtn" value="Add friend"/> 
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

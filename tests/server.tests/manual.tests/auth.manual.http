@@ -1,0 +1,175 @@
+// REST tests for authentication services (login and register)
+
+// create a user 
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "credentials": { "username": "jane@me.com",
+    "password": "bl@hbl@h"
+    },
+    "extra": "Jane Doe"
+}
+
+###
+
+// login for jane with correct password
+POST http://localhost:8080/auth/tokens/jane@me.com
+Content-Type: application/json
+
+{
+    "password": "bl@hbl@h"
+}
+
+###
+
+// register new user - valid request
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "Password123!"
+}
+
+###
+
+// register user - missing display name
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "email": "jane.doe@example.com",
+    "password": "Password123!"
+}
+
+###
+
+// register user - missing email
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Jane Doe",
+    "password": "Password123!"
+}
+
+###
+
+// register user - missing password
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Jane Doe",
+    "email": "jane.doe@example.com"
+}
+
+###
+
+// register user - invalid email format
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Invalid User",
+    "email": "invalid-email",
+    "password": "Password123!"
+}
+
+###
+
+// register user - weak password (too short)
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Weak User",
+    "email": "weak@example.com",
+    "password": "123"
+}
+
+###
+
+// register user - duplicate email (run after successful registration)
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Duplicate User",
+    "email": "john.doe@example.com",
+    "password": "AnotherPass123!"
+}
+
+###
+
+// login - valid credentials
+POST http://localhost:8080/auth/tokens/john.doe@example.com
+Content-Type: application/json
+
+{
+    "password": "Password123!"
+}
+
+###
+
+// login - missing username parameter
+POST http://localhost:8080/auth/tokens/
+Content-Type: application/json
+
+{
+    "password": "Password123!"
+}
+
+###
+
+// login - missing password
+POST http://localhost:8080/auth/tokens/john.doe@example.com
+Content-Type: application/json
+
+{}
+
+###
+
+// login - wrong password
+POST http://localhost:8080/auth/tokens/john.doe@example.com
+Content-Type: application/json
+
+{
+    "password": "WrongPassword123!"
+}
+
+###
+
+// login - non-existent user
+POST http://localhost:8080/auth/tokens/nonexistent@example.com
+Content-Type: application/json
+
+{
+    "password": "AnyPassword123!"
+}
+
+###
+
+// register test user
+POST http://localhost:8080/auth/users
+Content-Type: application/json
+
+{
+    "extra": "Alice Smith",
+    "email": "alice.smith@example.com",
+    "password": "AlicePass456!"
+}
+
+###
+
+// login test user
+POST http://localhost:8080/auth/tokens/alice.smith@example.com
+Content-Type: application/json
+
+{
+    "password": "AlicePass456!"
+}
+
+###

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Adrian Muñoz (adrianmu)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="18351 class project" />
+  <link href="../styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="../auth.ts" type="module" defer=""></script>
+  <title>YACA Authentication</title>
+  <style>
+    h2 {
+      margin-bottom: 2rem;
+      margin-top: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      gap: 1rem;
+    }
+
+    .auth-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .auth__nav-link {
+      color: gray;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      padding: 0.8rem 1.5rem;
+      border: 0.25rem solid gray;
+      border-radius: 15px;
+      background-color: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-block;
+      width: auto;
+      min-width: 100px;
+      max-width: 200px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .auth__nav-link:hover {
+      background-color: lightgray;
+      color: black;
+      border-color: rgb(68, 61, 61);
+      transform: scale(1.05);
+    }
+
+    #authForm {
+      background-color: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px black;
+      border: 0.25rem solid lightgray;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .form-input {
+      padding: 1rem;
+      font-size: 1rem;
+      border: 0.2rem solid lightgray;
+      border-radius: 10px;
+      background-color: white;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: gray;
+      background-color: lightgray;
+      box-shadow: 0 0 10px rgba(128, 128, 128, 0.3);
+      transform: scale(1.02);
+    }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .password-container .form-input {
+      width: 100%; /* Add this */
+      padding-right: 40px; /* Add padding to prevent text from overlapping the eye icon */
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: gray;
+      font-size: 1rem;
+      padding: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .password-toggle:hover {
+      color: black;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      color: gray;
+      background-color: white;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: 0.25rem solid gray;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 120px;
+      width: 100%;
+      flex: none;
+    }
+
+    .btn:hover {
+      background-color: lightgray;
+      color: black;
+      border-color: rgb(68, 61, 61);
+      transform: scale(1.05);
+    }
+
+    ul {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .auth-home-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <ul>
+      <div class="auth-nav">
+        <!-- <li>An input element with id="homeBtn"</li> -->
+        <a class="auth__nav-link" id="homeBtn" href="./index.html">Home</a>
+        <h2>Authentication</h2>
+      </div>
+
+      <!-- <li>A form element with id="authForm" to contain the registration/login inputs</li> -->
+      <form id="authForm">
+        <div class="form-fields">
+          <div class="form-group">
+            <label for="myName">Name</label>
+            <!-- <li>An input element with type="text" and id="myName"</li> -->
+            <input id="myName" class="form-input" placeholder="Enter your name">
+          </div>
+          
+          <div class="form-group">
+              <label for="myEmail">Email</label>
+              <!-- <li>An input element with type="email" and id="myEmail"</li> -->
+              <input id="myEmail" class="form-input" placeholder="Enter your email">
+            </div>
+          
+          <div class="form-group">
+            <label for="myPassword">Password</label>
+            <!-- <li>An input element with type="password" and id="myPassword" -->
+            <!-- <input type="password" id="myPassword" class="form-input" placeholder="Enter your password"> -->
+            <div class ="password-container">
+              <input type="password" id="myPassword" class="form-input" placeholder="Enter your password">
+              <button type="button" id="togglePassword" class="password-toggle">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="auth-buttons">
+          <!-- <li>An input element with type="submit" and id="loginBtn"</li> -->
+          <input type="submit" id="loginBtn" class="btn" value="Login">
+          <!-- <li>An input element with type="submit" and id="registerBtn"</li> -->
+          <input type="submit" id="registerBtn" class="btn" value="Register">
+        </div>
+      </form>
+    </ul>
+  </div>
+</body>
+
+</html>

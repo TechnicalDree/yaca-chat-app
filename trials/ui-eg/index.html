@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Adrian Muñoz (adrianmu)" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="18351 class project" />
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <title>YACA Home</title>
+  <style>
+    h2 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+
+    body {
+      justify-content: center;
+    }
+
+    .container {
+      gap: 3rem;
+      max-width: 800px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    ul {
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Welcome to YACA!</h2>
+    
+    <ul>
+      <nav class="nav">
+        <!-- <li>An input element with id="authBtn" that goes to the authentication page</li> -->
+        <a class="nav-link" id="authBtn" href="auth.html">Login</a>
+        <!-- <li>An input element with id="friendsBtn" that goes to the friends page</li> -->
+        <a class="nav-link" id="friendsBtn" href="friends.html">Friends</a>
+        <!-- <li>An input element with id="chatBtn" that goes to the chat room page</li> -->
+        <a class="nav-link" id="chatBtn" href="chat.html">Chat Room</a>
+      </nav>
+    </ul>
+  </div>
+</body>
+
+</html>

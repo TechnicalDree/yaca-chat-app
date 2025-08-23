@@ -1,0 +1,150 @@
+// REST tests for the chat room functionality
+
+// valid and invalid tokens
+@authTokenInvalid = ... // invalid token for user goes here
+@authTokenValid = ... // valid token for user goes here
+
+###
+
+// user posting for herself with valid token should succeed
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "jane@me.com",
+    "text": "a random post for valid authenticated user"
+}
+
+###
+
+// user posting with missing token should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+
+{
+    "author": "jane@me.com",
+    "text": "should fail due to missing token"
+}
+
+###
+
+// user posting with invalid token should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenInvalid}}
+
+{
+    "author": "jane@me.com",
+    "text": "should fail due to invalid token"
+}
+
+###
+
+// user posting with missing text should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "jane@me.com"
+}
+
+###
+
+// user posting with empty text should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "jane@me.com",
+    "text": ""
+}
+
+###
+
+// user posting with missing author should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "text": "should fail due to missing author"
+}
+
+###
+
+// user posting with empty author should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "",
+    "text": "should fail due to empty author"
+}
+
+###
+
+// user posting as another user should fail (author does not match token)
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "someoneelse@me.com",
+    "text": "should fail due to author mismatch"
+}
+
+###
+
+// user posting as a non-existent user should fail
+POST http://localhost:8080/chat/messages
+Content-Type: application/json
+Authorization: Bearer {{authTokenValid}}
+
+{
+    "author": "nonexistent@me.com",
+    "text": "should fail due to non-existent user"
+}
+
+###
+
+// get all chat messages with valid token should succeed
+GET http://localhost:8080/chat/messages
+Authorization: Bearer {{authTokenValid}}
+
+###
+
+// get all chat messages with missing token should fail
+GET http://localhost:8080/chat/messages
+
+###
+
+// get all chat messages with invalid token should fail
+GET http://localhost:8080/chat/messages
+Authorization: Bearer {{authTokenInvalid}}
+
+###
+
+// get a user by username with valid token should pass
+GET http://localhost:8080/chat/users/jane@me.com
+Authorization: Bearer {{authTokenValid}}
+
+###
+
+// get a user by username with invalid token should fail
+GET http://localhost:8080/chat/users/jane@me.com
+Authorization: Bearer {{authTokenInvalid}}
+
+###
+
+// get a user by username with missing token should fail
+GET http://localhost:8080/chat/users/jane@me.com
+
+###
+
+// get a user by username that does not exist should return 404
+GET http://localhost:8080/chat/users/nonexistent@me.com
+Authorization: Bearer {{authTokenValid}}
