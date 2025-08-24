@@ -36,18 +36,6 @@ Run `npm install` and then `npm update`. Fix vulnerabilities with `npm audit fix
 
 # Shh!
 
-SRV_ID: srv-d1su3k3e5dus73dutfc0
-
-SRV_KEY: V6r1ZK1f3rQ
-
-SRV_TK: rnd_2Az2T7No5TEAzziIRYoQBJonE6DZ
-
-DB_URL: mongodb+srv://adrianmu:4ldVxjfdXIqRvFmz@cluster0.sgdacps.mongodb.net
-
-PROD_DB: /yacaPROD?retryWrites=true&w=majority
-
-DEV_DB: /yacaDEV?retryWrites=true&w=majority
-
 RENDER_URL: https://yaca-adrianmu-m25.onrender.com/
 
 # Copyright and Academic Integrity Policy
